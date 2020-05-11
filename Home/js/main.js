@@ -1,3 +1,7 @@
+/**
+ * Created by Lete on 2020/5/11.
+ */
+
 // 移动设备隐藏
 $(document).ready(function() {
   $(".btn-mobile-menu__icon").click(function() {
@@ -13,6 +17,7 @@ $(document).ready(function() {
     $('.btn-mobile-menu__icon').toggleClass('fa fa-bars fa fa-chevron-circle-up animated fadeIn');
   });
 });
+
 
 //计算版权当前时间
 $(document).ready(function() {
@@ -37,8 +42,8 @@ function browserRedirect() {
   var bIsAndroid = sUserAgent.match(/android/i) == "android";
   var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
   var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-
+// 跳转到m.home.html
   if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-    //window.location.href = "ME/index.html";
+    window.location.href = "m.home.html";
   }
 }

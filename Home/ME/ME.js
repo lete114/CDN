@@ -1,6 +1,7 @@
 /**
- * Created by Lete on 2020/2/15.
+ * Created by Lete on 2020/5/11.
  */
+
 //判断移动设备
 browserRedirect();
 function browserRedirect() {
@@ -13,11 +14,12 @@ function browserRedirect() {
     var bIsAndroid = sUserAgent.match(/android/i) == "android";
     var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-
+// 跳转到home.html
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-        //window.location.href = "../index.html";
+        window.location.href = "home.html";
     }
 }
+
 //$(document).ready(function() {
 $(function() {
     $(".btn-mobile-menu__icon").click(function() {
