@@ -1,11 +1,6 @@
 /**
  * Created by Lete on 2020/2/15.
  */
-$(document).ready(function() {
-    var myDate = new Date;
-    var year = myDate.getFullYear();
-    $("#time").html(year);
-});
 //判断移动设备
 browserRedirect();
 function browserRedirect() {
@@ -20,10 +15,11 @@ function browserRedirect() {
     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
 
     if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-        window.location.href = "../index.html";
+        //window.location.href = "../index.html";
     }
 }
-$(document).ready(function() {
+//$(document).ready(function() {
+$(function() {
     $(".btn-mobile-menu__icon").click(function() {
         if ($('.navigation-wrapper').css('display') == "block") {
             // 隐藏

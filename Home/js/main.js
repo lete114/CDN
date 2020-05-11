@@ -39,6 +39,6 @@ function browserRedirect() {
   var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
 
   if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-    window.location.href = "ME/index.html";
+    //window.location.href = "ME/index.html";
   }
 }
