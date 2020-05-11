@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 
 //计算版权当前时间
-$(function() {
+$(document).ready(function() {
   var myDate = new Date;
   var year = myDate.getFullYear();
   $("#time").html(year);

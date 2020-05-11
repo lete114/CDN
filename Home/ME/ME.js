@@ -1,7 +1,7 @@
 /**
  * Created by Lete on 2020/2/15.
  */
-$(function() {
+$(document).ready(function() {
     var myDate = new Date;
     var year = myDate.getFullYear();
     $("#time").html(year);
