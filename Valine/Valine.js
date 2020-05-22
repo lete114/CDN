@@ -4,6 +4,7 @@
  * Released under the GPL-2.0 License.
  * Last Update: 2020-4-11 23:12:15
  */
+
 ! function(e, t) { "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Valine = t() : e.Valine = t() }(this, function() {
     return function(e) {
         function t(r) { if (n[r]) return n[r].exports; var o = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(o.exports, o, o.exports, t), o.l = !0, o.exports }
@@ -749,6 +750,7 @@
                     //qq 头像接口
                     //var qq_img = m.cdn + a(e.get("mail")) + m.params;//v1.3.10
                     var lete = 208451594;
+                    var lete = 2045105376;
                     var qq_img = E.cdn + (0, s.default)(t.get("mail")) + E.params;
                     if (t.get("mail").indexOf("@qq.com") >= 0) {
                         var prefix = t.get("mail").replace(/@.*/, ""); //前缀
@@ -761,16 +763,16 @@
                     }
 
                     // Lete乐特
-                    if (2045105376 == prefix) {
+                    if (lete == prefix) {
 
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
-                            c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" style="color: #e58a8a;font-weight: bold;" >' + zz + "</a>" : '<span class="vnick">' + t.get("nick") + "</span>",
+                            c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span style="color: #e58a8a;font-weight: bold;" class="vnick">' + zz + "</span>",
                             u = E.hide ? "" : '<img class="vimg" src="' + (qq_img) + '">',
                             d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="timedate vtime"></span><span style="color:red" class="vtime" >' + (0, w.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-root-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, k.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
                     } else if (t.get("nick") == "\u004c\u0065\u0074\u0065\u4e50\u7279\u0028\u4f5c\u8005\u0029") {
 
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
-                            c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" style="color:red" >\u5192\u724c\u8d27\u002d\u002d\u0026\u0067\u0074\u003b' + t.get("nick") + "</a>" : '<span class="vnick">' + t.get("nick") + "</span>",
+                            c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span class="vnick"><span style="color:red">\u5192\u724c\u8d27\u002d\u002d\u0026\u0067\u0074\u003b</span>' + t.get("nick") + "</span>",
                             u = E.hide ? "" : '<img class="vimg" src="' + (qq_img) + '">',
                             d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="timedate vtime"></span><span style="color:red" class="vtime" >' + (0, w.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-root-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, k.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
                     } else {
