@@ -655,5 +655,3 @@ var MMCQ = (function() {
         quantize: quantize
     };
 })();
-
-x1
