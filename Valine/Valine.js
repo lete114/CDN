@@ -749,8 +749,6 @@
 
                     //qq 头像接口
                     //var qq_img = m.cdn + a(e.get("mail")) + m.params;//v1.3.10
-                    var lete = 208451594;
-                    var lete = 2045105376;
                     var qq_img = E.cdn + (0, s.default)(t.get("mail")) + E.params;
                     if (t.get("mail").indexOf("@qq.com") >= 0) {
                         var prefix = t.get("mail").replace(/@.*/, ""); //前缀
@@ -763,7 +761,7 @@
                     }
 
                     // Lete乐特
-                    if (lete == prefix) {
+                    if (2045105376 == prefix) {
 
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
                             c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span style="color: #e58a8a;font-weight: bold;" class="vnick">' + zz + "</span>",
