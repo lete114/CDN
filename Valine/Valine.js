@@ -3,22 +3,6 @@
  * (c) 2017-2020 xCss
  * Released under the GPL-2.0 License.
  * Last Update: 2020-4-11 23:12:15
- * Lete乐特 : 2020-5-20----2020-5-22
- * 
- *                                   Lete魔改优化版
- *  .----------------.  .----------------.  .----------------.  .----------------. 
- * | .--------------. || .--------------. || .--------------. || .--------------. |
- * | |   _____      | || |  _________   | || |  _________   | || |  _________   | |
- * | |  |_   _|     | || | |_   ___  |  | || | |  _   _  |  | || | |_   ___  |  | |
- * | |    | |       | || |   | |_  \_|  | || | |_/ | | \_|  | || |   | |_  \_|  | |
- * | |    | |   _   | || |   |  _|  _   | || |     | |      | || |   |  _|  _   | |
- * | |   _| |__/ |  | || |  _| |___/ |  | || |    _| |_     | || |  _| |___/ |  | |
- * | |  |________|  | || | |_________|  | || |   |_____|    | || | |_________|  | |
- * | |              | || |              | || |              | || |              | |
- * | '--------------' || '--------------' || '--------------' || '--------------' |
- *  '----------------'  '----------------'  '----------------'  '----------------' 
- * 
- * 
  */
 
 ! function(e, t) { "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Valine = t() : e.Valine = t() }(this, function() {
@@ -746,58 +730,48 @@
             };
             e.Q(e.config.path).count().then(function(t) { t > 0 ? (e.$el.find(".vcount").show().find(".vnum").text(t), $()) : e.loading.hide() }).catch(function(t) { e.ErrorHandler(t, "count") });
             var j = function(t, n, r) {
+
+                    // 获取浏览器版本、操作系统版本
                     var o = (0, A.default)('<div class="vcard" id="' + t.id + '"></div>'),
                         i = t.get("ua"),
-                        a = ""; //获得UI标识 i
-
-                    // var remote_ip_info = t.get("http://pv.sohu.com/cityjson?ie=utf-8");//搜狐
-                    // getScript(a, function() {
-                    //     $("#depcity").val(getCity(remote_ip_info.city));
-
-                    // });
-                    // var u_address='unkown';
-                    // $.get('http://pv.sohu.com/cityjson?ie=utf-8', function() {
-                    //     u_address = returnCitySN.cname;
-                    // });
-
+                        a = "";
                     i && !/ja/.test(e.config.lang) && (i = A.default.detect(i),
                         a = '<span class="vsys">' + i.browser + " " + i.version + '</span> <span class="vsys">' + i.os + " " + i.osVersion + "</span>"), "*" === e.config.path && (a = '<a href="' + t.get("url") + '" class="vsys">' + t.get("url") + "</a>");
 
-                    //qq 头像接口
-                    //var qq_img = m.cdn + a(e.get("mail")) + m.params;//v1.3.10
+                    // 根据qq邮箱获取获取qq头像
                     var qq_img = E.cdn + (0, s.default)(t.get("mail")) + E.params;
-                    if (t.get("mail").indexOf("@qq.com") >= 0) {
-                        var prefix = t.get("mail").replace(/@.*/, ""); //前缀
-                        var pattern = /^\d+$/g; //正则表达式
-                        var result = prefix.match(pattern); //match 是匹配的意思
+                    if (t.get("mail").indexOf("@qq.com") >= 0) { //判断输入的邮箱是否包含@qq.com
+                        var prefix = t.get("mail").replace(/@.*/, ""); //去除@qq.com得到qq号
+                        var pattern = /^\d+$/; //正则表达式（匹配0-9的数字）
+                        var result = prefix.match(pattern); //判断qq号是否匹配正则表达式规则
                         if (result !== null) {
-                            qq_img = "//q1.qlogo.cn/g?b=qq&nk=" + prefix + "&s=640";
+                            // 获取qq头像地址
+                            qq_img = "https://q1.qlogo.cn/g?b=qq&nk=" + prefix + "&s=640";
 
                         }
+                    } else {
+                        // 调用Gravatar头像，若没有注册Gravatar，则使用Gravatar提供的随机头像
+                        qq_img = "https://api.paugram.com/gravatar/?email=" + t.get("mail");
                     }
 
-                    // Lete乐特
                     if (2045105376 == prefix) {
-
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
                             c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span style="color: #e58a8a;font-weight: bold;" class="vnick">' + zz + "</span>",
                             u = E.hide ? "" : '<img class="vimg" src="' + (qq_img) + '">',
                             d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="timedate vtime"></span><span style="color:red" class="vtime" >' + (0, w.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-root-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, k.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
                     } else if (t.get("nick") == "\u004c\u0065\u0074\u0065\u4e50\u7279\u0028\u4f5c\u8005\u0029") {
-
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
                             c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span class="vnick"><span style="color:red">\u5192\u724c\u8d27\u002d\u002d\u0026\u0067\u0074\u003b</span>' + t.get("nick") + "</span>",
                             u = E.hide ? "" : '<img class="vimg" src="' + (qq_img) + '">',
                             d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="timedate vtime"></span><span style="color:red" class="vtime" >' + (0, w.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-root-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, k.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
                     } else {
-
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
                             c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span class="vnick">' + t.get("nick") + "</span>",
                             u = E.hide ? "" : '<img class="vimg" src="' + (qq_img) + '">',
                             d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="timedate vtime"></span><span style="color:red" class="vtime" >' + (0, w.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-root-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, k.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
 
                     }
-
+                    // 获取评论时间：年，月，日，时，分，秒
                     myformatter(new Date());
 
                     function myformatter(date) {
