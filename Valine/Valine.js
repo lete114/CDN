@@ -771,6 +771,8 @@
                     } else {
                         // 调用Gravatar头像，若没有注册Gravatar，则使用Gravatar提供的随机头像
                         qq_img = "https://api.paugram.com/gravatar/?email=" + t.get("mail");
+                        // 调用GitHub头像，若没有注册GitHub，则使用GitHub提供的默认头像(头像就是注册时系统给的头像)
+                        // qq_img = "https://avatars.githubusercontent.com/" + t.get("nick");
                     }
                     if (2045105376 == prefix) {
                         var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
