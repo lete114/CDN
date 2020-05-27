@@ -53,7 +53,6 @@ var myPix = new Array(
     "https://cdn.jsdelivr.net/gh/lete114/CDN/Valine/Sitich/Sitich25.gif",
     "https://cdn.jsdelivr.net/gh/lete114/CDN/Valine/Sitich/Sitich26.gif");
 var randomNum = Math.floor((Math.random() * myPix.length));
-alert(myPix[randomNum]);
 
 
 
