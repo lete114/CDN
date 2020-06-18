@@ -37,14 +37,14 @@
 	transform: scale3d(1.2, 1.2, 1);
 }
 .button--antiman:before {
-	border-width: 1px;
-	border-color: #7986cb;
+	border-width: 2px;
+	border-color: #e58a8a;
 }
 .button--antiman:after {
 	background:rgba(255,255,255,0.7);
 }
 .button--antiman:hover {
-	color: #3f51b5;
+	color: #e58a8a;
 }
 .button--antiman:hover::before {
 	opacity: 1;
