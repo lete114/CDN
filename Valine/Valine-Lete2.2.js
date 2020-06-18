@@ -465,10 +465,10 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                             }
                             if (-1 === (h = l(e, c - 1))) { f = d.trim(e.slice(r, c)), f = u(f), n(i, f), i = !1, r = c + 1; continue }
                         } else;
-                    else {
-                        if (-1 === (h = e.indexOf(v, c + 1))) break;
-                        f = d.trim(e.slice(r + 1, h)), n(i, f), i = !1, c = h, r = c + 1
-                    } else i = e.slice(r, c), r = c + 1
+                else {
+                    if (-1 === (h = e.indexOf(v, c + 1))) break;
+                    f = d.trim(e.slice(r + 1, h)), n(i, f), i = !1, c = h, r = c + 1
+                } else i = e.slice(r, c), r = c + 1
             }
             return r < e.length && (!1 === i ? n(e.slice(r)) : n(i, u(d.trim(e.slice(r))))), d.trim(o.join(" "))
         }
@@ -789,12 +789,12 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                         isf = e.config.friends.includes((0, s.default)(t.get("mail").toLowerCase())),
                         gat = ism ? '<span class="vtag vmaster">' + e.config.tagMeta[0] + '</span>' : isf ? '<span class="vtag vfriend">' + e.config.tagMeta[1] + '</span>' : '<span class="vtag vvisitor">' + e.config.tagMeta[2] + '</span>';
                     var qqm = t.get("mail").match(/([\d]+)@(vip\.)?qq.com/),
-                    /* 获取qq头像 */
+                        /* 获取qq头像 */
                         qqa = qqm ? "https://q2.qlogo.cn/headimg_dl?dst_uin=" + qqm + "&spec=640" : null,
                         qal = e.config.enableQQ && t.get("QQAvatar") ? t.get("QQAvatar") : qqa;
 
                     var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : "",
-                        c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" + gat : '<span class="vnick">' + t.get("nick") + "</span>" + gat,
+                        c = l ? '<a class="vnick"  rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" + gat : '<span class="vnick" style="color: #1abc9c;" >' + t.get("nick") + "</span>" + gat,
                         u = T.hide ? "" : qal ? '<img class="vimg" src="' + qal + '" referrerPolicy="no-referrer"/>' : '<img class="vimg" src="' + (T.cdn + (0, s.default)(t.get("mail")) + T.params) + '">',
                         d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span style="color:red" class="vtime" >' + (0, g.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-vm-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0, S.default)(t.get("comment")) + '</div><div class="vreply-wrapper" data-self-id="' + t.id + '"></div><div class="vquote" data-self-id="' + t.id + '"></div></div>';
                     o.html(d);
@@ -1296,26 +1296,26 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                     for (var n, r, o, i, a, s, l, c, u, d, p, h, g; e;)
                         if ((o = this.rules.newline.exec(e)) && (e = e.substring(o[0].length), o[0].length > 1 && this.tokens.push({ type: "space" })), o = this.rules.code.exec(e)) e = e.substring(o[0].length), o = o[0].replace(/^ {4}/gm, ""), this.tokens.push({ type: "code", text: this.options.pedantic ? o : o.replace(/\n+$/, "") });
                         else if (o = this.rules.fences.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "code", lang: o[2], text: o[3] || "" });
-                        else if (o = this.rules.heading.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "heading", depth: o[1].length, text: o[2] });
-                        else if (t && (o = this.rules.nptable.exec(e)) && (s = { type: "table", header: f(o[1].replace(/^ *| *\| *$/g, "")), align: o[2].replace(/^ *|\| *$/g, "").split(/ *\| */), cells: o[3] ? o[3].replace(/\n$/, "").split("\n") : [] }, s.header.length === s.align.length)) {
-                            for (e = e.substring(o[0].length), c = 0; c < s.align.length; c++) /^ *-+: *$/.test(s.align[c]) ? s.align[c] = "right" : /^ *:-+: *$/.test(s.align[c]) ? s.align[c] = "center" : /^ *:-+ *$/.test(s.align[c]) ? s.align[c] = "left" : s.align[c] = null;
-                            for (c = 0; c < s.cells.length; c++) s.cells[c] = f(s.cells[c], s.header.length);
-                            this.tokens.push(s)
-                        } else if (o = this.rules.hr.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "hr" });
-                        else if (o = this.rules.blockquote.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "blockquote_start" }), o = o[0].replace(/^ *> ?/gm, ""), this.token(o, t), this.tokens.push({ type: "blockquote_end" });
-                        else if (o = this.rules.list.exec(e)) {
-                            for (e = e.substring(o[0].length), i = o[2], p = i.length > 1, this.tokens.push({ type: "list_start", ordered: p, start: p ? +i : "" }), o = o[0].match(this.rules.item), n = !1, d = o.length, c = 0; c < d; c++) s = o[c], l = s.length, s = s.replace(/^ *([*+-]|\d+\.) +/, ""), ~s.indexOf("\n ") && (l -= s.length, s = this.options.pedantic ? s.replace(/^ {1,4}/gm, "") : s.replace(new RegExp("^ {1," + l + "}", "gm"), "")), this.options.smartLists && c !== d - 1 && (a = v.bullet.exec(o[c + 1])[0], i === a || i.length > 1 && a.length > 1 || (e = o.slice(c + 1).join("\n") + e, c = d - 1)), r = n || /\n\n(?!\s*$)/.test(s), c !== d - 1 && (n = "\n" === s.charAt(s.length - 1), r || (r = n)), h = /^\[[ xX]\] /.test(s), g = void 0, h && (g = " " !== s[1], s = s.replace(/^\[[ xX]\] +/, "")), this.tokens.push({ type: r ? "loose_item_start" : "list_item_start", task: h, checked: g }), this.token(s, !1), this.tokens.push({ type: "list_item_end" });
-                            this.tokens.push({ type: "list_end" })
-                        } else if (o = this.rules.html.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: this.options.sanitize ? "paragraph" : "html", pre: !this.options.sanitizer && ("pre" === o[1] || "script" === o[1] || "style" === o[1]), text: o[0] });
-                        else if (t && (o = this.rules.def.exec(e))) e = e.substring(o[0].length), o[3] && (o[3] = o[3].substring(1, o[3].length - 1)), u = o[1].toLowerCase().replace(/\s+/g, " "), this.tokens.links[u] || (this.tokens.links[u] = { href: o[2], title: o[3] });
-                        else if (t && (o = this.rules.table.exec(e)) && (s = { type: "table", header: f(o[1].replace(/^ *| *\| *$/g, "")), align: o[2].replace(/^ *|\| *$/g, "").split(/ *\| */), cells: o[3] ? o[3].replace(/(?: *\| *)?\n$/, "").split("\n") : [] }, s.header.length === s.align.length)) {
-                            for (e = e.substring(o[0].length), c = 0; c < s.align.length; c++) /^ *-+: *$/.test(s.align[c]) ? s.align[c] = "right" : /^ *:-+: *$/.test(s.align[c]) ? s.align[c] = "center" : /^ *:-+ *$/.test(s.align[c]) ? s.align[c] = "left" : s.align[c] = null;
-                            for (c = 0; c < s.cells.length; c++) s.cells[c] = f(s.cells[c].replace(/^ *\| *| *\| *$/g, ""), s.header.length);
-                            this.tokens.push(s)
-                        } else if (o = this.rules.lheading.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "heading", depth: "=" === o[2] ? 1 : 2, text: o[1] });
-                        else if (t && (o = this.rules.paragraph.exec(e))) e = e.substring(o[0].length), this.tokens.push({ type: "paragraph", text: "\n" === o[1].charAt(o[1].length - 1) ? o[1].slice(0, -1) : o[1] });
-                        else if (o = this.rules.text.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "text", text: o[0] });
-                        else if (e) throw new Error("Infinite loop on byte: " + e.charCodeAt(0));
+                    else if (o = this.rules.heading.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "heading", depth: o[1].length, text: o[2] });
+                    else if (t && (o = this.rules.nptable.exec(e)) && (s = { type: "table", header: f(o[1].replace(/^ *| *\| *$/g, "")), align: o[2].replace(/^ *|\| *$/g, "").split(/ *\| */), cells: o[3] ? o[3].replace(/\n$/, "").split("\n") : [] }, s.header.length === s.align.length)) {
+                        for (e = e.substring(o[0].length), c = 0; c < s.align.length; c++) /^ *-+: *$/.test(s.align[c]) ? s.align[c] = "right" : /^ *:-+: *$/.test(s.align[c]) ? s.align[c] = "center" : /^ *:-+ *$/.test(s.align[c]) ? s.align[c] = "left" : s.align[c] = null;
+                        for (c = 0; c < s.cells.length; c++) s.cells[c] = f(s.cells[c], s.header.length);
+                        this.tokens.push(s)
+                    } else if (o = this.rules.hr.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "hr" });
+                    else if (o = this.rules.blockquote.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "blockquote_start" }), o = o[0].replace(/^ *> ?/gm, ""), this.token(o, t), this.tokens.push({ type: "blockquote_end" });
+                    else if (o = this.rules.list.exec(e)) {
+                        for (e = e.substring(o[0].length), i = o[2], p = i.length > 1, this.tokens.push({ type: "list_start", ordered: p, start: p ? +i : "" }), o = o[0].match(this.rules.item), n = !1, d = o.length, c = 0; c < d; c++) s = o[c], l = s.length, s = s.replace(/^ *([*+-]|\d+\.) +/, ""), ~s.indexOf("\n ") && (l -= s.length, s = this.options.pedantic ? s.replace(/^ {1,4}/gm, "") : s.replace(new RegExp("^ {1," + l + "}", "gm"), "")), this.options.smartLists && c !== d - 1 && (a = v.bullet.exec(o[c + 1])[0], i === a || i.length > 1 && a.length > 1 || (e = o.slice(c + 1).join("\n") + e, c = d - 1)), r = n || /\n\n(?!\s*$)/.test(s), c !== d - 1 && (n = "\n" === s.charAt(s.length - 1), r || (r = n)), h = /^\[[ xX]\] /.test(s), g = void 0, h && (g = " " !== s[1], s = s.replace(/^\[[ xX]\] +/, "")), this.tokens.push({ type: r ? "loose_item_start" : "list_item_start", task: h, checked: g }), this.token(s, !1), this.tokens.push({ type: "list_item_end" });
+                        this.tokens.push({ type: "list_end" })
+                    } else if (o = this.rules.html.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: this.options.sanitize ? "paragraph" : "html", pre: !this.options.sanitizer && ("pre" === o[1] || "script" === o[1] || "style" === o[1]), text: o[0] });
+                    else if (t && (o = this.rules.def.exec(e))) e = e.substring(o[0].length), o[3] && (o[3] = o[3].substring(1, o[3].length - 1)), u = o[1].toLowerCase().replace(/\s+/g, " "), this.tokens.links[u] || (this.tokens.links[u] = { href: o[2], title: o[3] });
+                    else if (t && (o = this.rules.table.exec(e)) && (s = { type: "table", header: f(o[1].replace(/^ *| *\| *$/g, "")), align: o[2].replace(/^ *|\| *$/g, "").split(/ *\| */), cells: o[3] ? o[3].replace(/(?: *\| *)?\n$/, "").split("\n") : [] }, s.header.length === s.align.length)) {
+                        for (e = e.substring(o[0].length), c = 0; c < s.align.length; c++) /^ *-+: *$/.test(s.align[c]) ? s.align[c] = "right" : /^ *:-+: *$/.test(s.align[c]) ? s.align[c] = "center" : /^ *:-+ *$/.test(s.align[c]) ? s.align[c] = "left" : s.align[c] = null;
+                        for (c = 0; c < s.cells.length; c++) s.cells[c] = f(s.cells[c].replace(/^ *\| *| *\| *$/g, ""), s.header.length);
+                        this.tokens.push(s)
+                    } else if (o = this.rules.lheading.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "heading", depth: "=" === o[2] ? 1 : 2, text: o[1] });
+                    else if (t && (o = this.rules.paragraph.exec(e))) e = e.substring(o[0].length), this.tokens.push({ type: "paragraph", text: "\n" === o[1].charAt(o[1].length - 1) ? o[1].slice(0, -1) : o[1] });
+                    else if (o = this.rules.text.exec(e)) e = e.substring(o[0].length), this.tokens.push({ type: "text", text: o[0] });
+                    else if (e) throw new Error("Infinite loop on byte: " + e.charCodeAt(0));
                     return this.tokens
                 };
                 var g = { escape: /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/, autolink: /^<(scheme:[^\s\x00-\x1f<>]*|email)>/, url: d, tag: "^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>", link: /^!?\[(label)\]\(href(?:\s+(title))?\s*\)/, reflink: /^!?\[(label)\]\[(?!\s*\])((?:\\[\[\]]?|[^\[\]\\])+)\]/, nolink: /^!?\[(?!\s*\])((?:\[[^\[\]]*\]|\\[\[\]]|[^\[\]])*)\](?:\[\])?/, strong: /^__([^\s][\s\S]*?[^\s])__(?!_)|^\*\*([^\s][\s\S]*?[^\s])\*\*(?!\*)|^__([^\s])__(?!_)|^\*\*([^\s])\*\*(?!\*)/, em: /^_([^\s][\s\S]*?[^\s_])_(?!_)|^_([^\s_][\s\S]*?[^\s])_(?!_)|^\*([^\s][\s\S]*?[^\s*])\*(?!\*)|^\*([^\s*][\s\S]*?[^\s])\*(?!\*)|^_([^\s_])_(?!_)|^\*([^\s*])\*(?!\*)/, code: /^(`+)\s*([\s\S]*?[^`]?)\s*\1(?!`)/, br: /^ {2,}\n(?!\s*$)/, del: d, text: /^[\s\S]+?(?=[\\<!\[`*]|\b_| {2,}\n|$)/ };
@@ -1323,20 +1323,20 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                     for (var t, n, o, i, a, l = ""; e;)
                         if (a = this.rules.escape.exec(e)) e = e.substring(a[0].length), l += a[1];
                         else if (a = this.rules.autolink.exec(e)) e = e.substring(a[0].length), "@" === a[2] ? (n = s(this.mangle(a[1])), o = "mailto:" + n) : (n = s(a[1]), o = n), l += this.renderer.link(o, null, n);
-                        else if (this.inLink || !(a = this.rules.url.exec(e))) {
-                            if (a = this.rules.tag.exec(e)) !this.inLink && /^<a /i.test(a[0]) ? this.inLink = !0 : this.inLink && /^<\/a>/i.test(a[0]) && (this.inLink = !1), e = e.substring(a[0].length), l += this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(a[0]) : s(a[0]) : a[0];
-                            else if (a = this.rules.link.exec(e)) e = e.substring(a[0].length), this.inLink = !0, o = a[2], this.options.pedantic ? (t = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(o), t ? (o = t[1], i = t[3]) : i = "") : i = a[3] ? a[3].slice(1, -1) : "", o = o.trim().replace(/^<([\s\S]*)>$/, "$1"), l += this.outputLink(a, { href: r.escapes(o), title: r.escapes(i) }), this.inLink = !1;
-                            else if ((a = this.rules.reflink.exec(e)) || (a = this.rules.nolink.exec(e))) {
-                                if (e = e.substring(a[0].length), t = (a[2] || a[1]).replace(/\s+/g, " "), !(t = this.links[t.toLowerCase()]) || !t.href) { l += a[0].charAt(0), e = a[0].substring(1) + e; continue }
-                                this.inLink = !0, l += this.outputLink(a, t), this.inLink = !1
-                            } else if (a = this.rules.strong.exec(e)) e = e.substring(a[0].length), l += this.renderer.strong(this.output(a[4] || a[3] || a[2] || a[1]));
-                            else if (a = this.rules.em.exec(e)) e = e.substring(a[0].length), l += this.renderer.em(this.output(a[6] || a[5] || a[4] || a[3] || a[2] || a[1]));
-                            else if (a = this.rules.code.exec(e)) e = e.substring(a[0].length), l += this.renderer.codespan(s(a[2].trim(), !0));
-                            else if (a = this.rules.br.exec(e)) e = e.substring(a[0].length), l += this.renderer.br();
-                            else if (a = this.rules.del.exec(e)) e = e.substring(a[0].length), l += this.renderer.del(this.output(a[1]));
-                            else if (a = this.rules.text.exec(e)) e = e.substring(a[0].length), l += this.renderer.text(s(this.smartypants(a[0])));
-                            else if (e) throw new Error("Infinite loop on byte: " + e.charCodeAt(0))
-                        } else a[0] = this.rules._backpedal.exec(a[0])[0], e = e.substring(a[0].length), "@" === a[2] ? (n = s(a[0]), o = "mailto:" + n) : (n = s(a[0]), o = "www." === a[1] ? "http://" + n : n), l += this.renderer.link(o, null, n);
+                    else if (this.inLink || !(a = this.rules.url.exec(e))) {
+                        if (a = this.rules.tag.exec(e)) !this.inLink && /^<a /i.test(a[0]) ? this.inLink = !0 : this.inLink && /^<\/a>/i.test(a[0]) && (this.inLink = !1), e = e.substring(a[0].length), l += this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(a[0]) : s(a[0]) : a[0];
+                        else if (a = this.rules.link.exec(e)) e = e.substring(a[0].length), this.inLink = !0, o = a[2], this.options.pedantic ? (t = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(o), t ? (o = t[1], i = t[3]) : i = "") : i = a[3] ? a[3].slice(1, -1) : "", o = o.trim().replace(/^<([\s\S]*)>$/, "$1"), l += this.outputLink(a, { href: r.escapes(o), title: r.escapes(i) }), this.inLink = !1;
+                        else if ((a = this.rules.reflink.exec(e)) || (a = this.rules.nolink.exec(e))) {
+                            if (e = e.substring(a[0].length), t = (a[2] || a[1]).replace(/\s+/g, " "), !(t = this.links[t.toLowerCase()]) || !t.href) { l += a[0].charAt(0), e = a[0].substring(1) + e; continue }
+                            this.inLink = !0, l += this.outputLink(a, t), this.inLink = !1
+                        } else if (a = this.rules.strong.exec(e)) e = e.substring(a[0].length), l += this.renderer.strong(this.output(a[4] || a[3] || a[2] || a[1]));
+                        else if (a = this.rules.em.exec(e)) e = e.substring(a[0].length), l += this.renderer.em(this.output(a[6] || a[5] || a[4] || a[3] || a[2] || a[1]));
+                        else if (a = this.rules.code.exec(e)) e = e.substring(a[0].length), l += this.renderer.codespan(s(a[2].trim(), !0));
+                        else if (a = this.rules.br.exec(e)) e = e.substring(a[0].length), l += this.renderer.br();
+                        else if (a = this.rules.del.exec(e)) e = e.substring(a[0].length), l += this.renderer.del(this.output(a[1]));
+                        else if (a = this.rules.text.exec(e)) e = e.substring(a[0].length), l += this.renderer.text(s(this.smartypants(a[0])));
+                        else if (e) throw new Error("Infinite loop on byte: " + e.charCodeAt(0))
+                    } else a[0] = this.rules._backpedal.exec(a[0])[0], e = e.substring(a[0].length), "@" === a[2] ? (n = s(a[0]), o = "mailto:" + n) : (n = s(a[0]), o = "www." === a[1] ? "http://" + n : n), l += this.renderer.link(o, null, n);
                     return l
                 }, r.escapes = function(e) { return e ? e.replace(r.rules._escapes, "$1") : e }, r.prototype.outputLink = function(e, t) {
                     var n = t.href,
@@ -1356,7 +1356,7 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                     return t && (o += ' title="' + t + '"'), o += ">" + n + "</a>"
                 }, o.prototype.image = function(e, t, n) { this.options.baseUrl && !y.test(e) && (e = u(this.options.baseUrl, e)); var r = '<img src="' + e + '" alt="' + n + '"'; return t && (r += ' title="' + t + '"'), r += this.options.xhtml ? "/>" : ">" }, o.prototype.text = function(e) { return e }, i.prototype.strong = i.prototype.em = i.prototype.codespan = i.prototype.del = i.prototype.text = function(e) { return e }, i.prototype.link = i.prototype.image = function(e, t, n) { return "" + n }, i.prototype.br = function() { return "" }, a.parse = function(e, t) { return new a(t).parse(e) }, a.prototype.parse = function(e) { this.inline = new r(e.links, this.options), this.inlineText = new r(e.links, p({}, this.options, { renderer: new i })), this.tokens = e.reverse(); for (var t = ""; this.next();) t += this.tok(); return t }, a.prototype.next = function() { return this.token = this.tokens.pop() }, a.prototype.peek = function() { return this.tokens[this.tokens.length - 1] || 0 }, a.prototype.parseText = function() {
                     for (var e = this.token.text;
-                         "text" === this.peek().type;) e += "\n" + this.next().text;
+                        "text" === this.peek().type;) e += "\n" + this.next().text;
                     return this.inline.output(e)
                 }, a.prototype.tok = function() {
                     switch (this.token.type) {
@@ -1379,20 +1379,20 @@ var randomNum = Math.floor((Math.random() * myPix.length));
                             return this.renderer.table(o, i);
                         case "blockquote_start":
                             for (i = "";
-                                 "blockquote_end" !== this.next().type;) i += this.tok();
+                                "blockquote_end" !== this.next().type;) i += this.tok();
                             return this.renderer.blockquote(i);
                         case "list_start":
                             i = "";
                             for (var a = this.token.ordered, s = this.token.start;
-                                 "list_end" !== this.next().type;) i += this.tok();
+                                "list_end" !== this.next().type;) i += this.tok();
                             return this.renderer.list(i, a, s);
                         case "list_item_start":
                             for (i = "", this.token.task && (i += this.renderer.checkbox(this.token.checked));
-                                 "list_item_end" !== this.next().type;) i += "text" === this.token.type ? this.parseText() : this.tok();
+                                "list_item_end" !== this.next().type;) i += "text" === this.token.type ? this.parseText() : this.tok();
                             return this.renderer.listitem(i);
                         case "loose_item_start":
                             for (i = "";
-                                 "list_item_end" !== this.next().type;) i += this.tok();
+                                "list_item_end" !== this.next().type;) i += this.tok();
                             return this.renderer.listitem(i);
                         case "html":
                             return this.renderer.html(this.token.text);
@@ -1749,7 +1749,7 @@ var randomNum = Math.floor((Math.random() * myPix.length));
         for (var s in o) t[s] = o[s];
         for (var s in i) t[s] = i[s];
         "undefined" != typeof window && (window.filterXSS = e.exports),
-        function() { return "undefined" != typeof self && "undefined" != typeof DedicatedWorkerGlobalScope && self instanceof DedicatedWorkerGlobalScope }() && (self.filterXSS = e.exports)
+            function() { return "undefined" != typeof self && "undefined" != typeof DedicatedWorkerGlobalScope && self instanceof DedicatedWorkerGlobalScope }() && (self.filterXSS = e.exports)
     }, function(e, t, n) {
         function r(e) { return void 0 === e || null === e }
 
