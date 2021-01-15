@@ -1,0 +1,31 @@
+class:
+  class_name: 友情链接
+  class_desc: 一群快乐的小伙伴
+  link_list:
+    - name: Lete乐特
+      link: https://www.lete114.top/
+      avatar: https://www.lete114.top/img/avatar.png
+      descr: 人生只有一次，大胆的生活！！
+    
+    - name: Hexo-MengD(萌典)
+      link: https://github.com/lete114/hexo-theme-MengD
+      avatar: https://github.com/favicon.ico
+      descr: 一个简洁即漂亮的主题
+class2:
+  class_name: 开源项目
+  class_desc:
+  link_list:
+    - name: Lete乐特
+      link: https://www.lete114.top/
+      avatar: https://www.lete114.top/img/avatar.png
+      descr: 人生只有一次，大胆的生活！！
+
+    - name: Hexo-MengD(萌典)
+      link: https://github.com/lete114/hexo-theme-MengD
+      avatar: https://github.com/favicon.ico
+      descr: 一个简洁即漂亮的主题
+
+    - name: Hexo-SEO-AutoPush
+      link: https://github.com/lete114/hexo-seo-autopush
+      avatar: https://github.com/favicon.ico
+      descr: 每天自动提交网站URL到Baidu、Bing、Google
